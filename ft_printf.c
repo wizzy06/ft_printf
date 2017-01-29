@@ -6,7 +6,7 @@
 /*   By: cparis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 23:52:27 by cparis            #+#    #+#             */
-/*   Updated: 2017/01/29 01:50:26 by cparis           ###   ########.fr       */
+/*   Updated: 2017/01/29 03:54:54 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,20 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-void		ft_printf(const char *format, ...)
+int		ft_countformat(char *str)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (str[i] != '\0')
+		j++;
+	i++;
+	return (j);
+}
+
+void	ft_printf(const char *format, ...)
 {
 	va_list ap;
 	int nb;
@@ -26,6 +39,7 @@ void		ft_printf(const char *format, ...)
 		char *n;
 
 		n = va_arg(ap, char *);
+		printf(ft_countformat(n));
 		printf("%s.\n", n);
 		++nb;
 	}
