@@ -3,28 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cparis <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 23:52:27 by cparis            #+#    #+#             */
-/*   Updated: 2017/01/29 03:54:54 by cparis           ###   ########.fr       */
+/*   Updated: 2017/01/30 17:03:35 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdarg.h>
 #include <stdio.h>
+#include <unistd.h>
+
+void	ft_putputchar(char c)
+{
+	write(1, &c, 1);
+}
+
+void	ft_putputstr(char const *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		ft_putputchar(s[i]);
+		i++;
+	}
+}
 
 int		ft_countformat(char *str)
 {
 	int i;
-	int j;
+	int count;
 
 	i = 0;
-	j = 0;
-	while (str[i] != '\0')
-		j++;
-	i++;
-	return (j);
+	count = 0;
+    while (str[i] != '\0')
+	{
+		if(str[i] == '%')
+			count++;
+            printf("%d", count);
+            if(str[i] == '%' && count == 10)
+            break;
+		i++;
+	}
+	return (count);
 }
 
 void	ft_printf(const char *format, ...)
@@ -39,13 +63,13 @@ void	ft_printf(const char *format, ...)
 		char *n;
 
 		n = va_arg(ap, char *);
-		printf(ft_countformat(n));
+		printf("%d", ft_countformat(n));
 		printf("%s.\n", n);
 		++nb;
 	}
 	va_end(ap);
 }
-
+/*
 void	format(const char *format, ...)
 {
 	va_list ap;
@@ -80,9 +104,9 @@ void	format(const char *format, ...)
 	va_end(ap);
 	va_end(ap2);
 }
-
+*/
 int main(void)
 {
-	ft_printf("\n","Hello", "Bea", "J'te", "Baise");
+	ft_printf("\n","efefe", "%%fff", "%%J'te", "cccc");
 	return (0);
 }
