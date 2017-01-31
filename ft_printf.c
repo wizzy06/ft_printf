@@ -6,7 +6,7 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 23:52:27 by cparis            #+#    #+#             */
-/*   Updated: 2017/01/30 17:03:35 by cparis           ###   ########.fr       */
+/*   Updated: 2017/01/31 13:53:23 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	ft_printf(const char *format, ...)
 	va_end(ap);
 }
 /*
+
 void	format(const char *format, ...)
 {
 	va_list ap;
@@ -105,6 +106,7 @@ void	format(const char *format, ...)
 	va_end(ap2);
 }
 */
+
 int main(void)
 {
 	ft_printf("\n","efefe", "%%fff", "%%J'te", "cccc");
