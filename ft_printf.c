@@ -6,7 +6,7 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 23:52:27 by cparis            #+#    #+#             */
-/*   Updated: 2017/02/03 15:27:04 by cparis           ###   ########.fr       */
+/*   Updated: 2017/02/03 17:44:00 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ void	ft_printf(const char *format, ...)
 	
 	nb = 0;
 	va_start(ap, format);
-	while (nb != 1)
+	while (nb++ != 1)
 	{
 		char *n;
-
+		
 		n = va_arg(ap, char *);
 
 		while (*format)
@@ -71,12 +71,58 @@ void	ft_printf(const char *format, ...)
 					break;
 				}
 		}		
-		++nb;
 	}
 	va_end(ap);
 }
 
-/*int	ft_width_master(int width_min, int len)
+int main(void)
+{
+	ft_printf("4", "coucou");
+	return (0);
+}
+
+/*void	format(const char *format, ...)
+{
+	va_list ap;
+	va_list ap2;
+	char c;
+	char *s;
+	int d;
+
+	va_start(ap2, format);
+	va_copy(ap2, ap);
+	while (*format)
+	{
+		// TEST 1
+
+		// TEST 2		
+		if(format == "%s")
+		{
+			s = va_arg(ap, char *);
+			ft_putstr();
+			printf("string %s\n", s);
+			break;
+		}
+		if( format == '%d')
+		{
+			d = va_arg(ap, int);
+			ft_putnbr();
+			printf("int %d\n", d);
+			break;
+		}
+		if(format == '%c')
+		{
+			c = va_arg(ap, char);
+			ft_putchar();
+			printf("char %c\n", c);
+			break;
+		}
+	}
+	va_end(ap2);
+}
+*/
+
+/* int	ft_width_master(int width_min, int len)
 {
 	width_min = ft_atoi(format);
 	len = ft_strlen(n);
@@ -93,53 +139,5 @@ void	ft_printf(const char *format, ...)
 	}
 	else
 		return (1);
-}
-*/
-int main(void)
-{
-	ft_printf("4", "coucou");
-	return (0);
-}
-
-
-
-
-
-
-/*
-
-void	format(const char *format, ...)
-{
-	va_list ap;
-	va_list ap2;
-	char c;
-	char *s;
-	int d;
-
-	va_start(ap, format);
-	va_copy(ap2, ap);
-	while (*format)
-	{
-		if(format == "s")
-		{
-			s = va_arg(ap, char *);
-			printf("string %s\n", s);
-			break;
-		}
-		if( format == 'd')
-		{
-			d = va_arg(ap, int);
-			printf("int %d\n", d);
-			break;
-		}
-		if(format == 'c')
-		{
-			c = va_arg(ap, int);
-			printf("char %c\n", c);
-			break;
-		}
-	}
-	va_end(ap);
-	va_end(ap2);
 }
 */
