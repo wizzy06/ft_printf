@@ -6,7 +6,7 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 23:48:48 by cparis            #+#    #+#             */
-/*   Updated: 2017/02/09 06:06:41 by cparis           ###   ########.fr       */
+/*   Updated: 2017/02/09 06:10:51 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int     ft_hexa_upper(long int	decimal_nbr, int up_low);
 void	ft_hexa_lower(char c); 
 int	    ft_int_to_octal(long nbr);
 void	pointer_function(void *ptr);
-void	ft_pointer_flag(char c);
+
 
 
 #endif
