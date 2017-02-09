@@ -6,11 +6,11 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 17:05:38 by cparis            #+#    #+#             */
-/*   Updated: 2017/02/02 17:59:54 by cparis           ###   ########.fr       */
+/*   Updated: 2017/02/09 03:21:52 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../ft_printf.h"
+#include "ft_printf.h"
 
 //gérer les flags #0-+ et espace
 

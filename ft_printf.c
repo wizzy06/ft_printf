@@ -6,14 +6,11 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 23:52:27 by cparis            #+#    #+#             */
-/*   Updated: 2017/02/03 17:44:00 by cparis           ###   ########.fr       */
+/*   Updated: 2017/02/09 04:08:14 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdarg.h>
-#include <stdio.h>
-#include <unistd.h>
 
 int		ft_countformat(char *str)
 {
@@ -33,21 +30,61 @@ int		ft_countformat(char *str)
 	return (count);
 }
 
-void	ft_printf(const char *format, ...)
+int		ft_printf(const char *format, ...)
 {
 	va_list ap;
-	int nb;
+	int size;
 	
-	nb = 0;
 	va_start(ap, format);
-	while (nb++ != 1)
-	{
-		char *n;
-		
-		n = va_arg(ap, char *);
-
-		while (*format)
+	size = 0;
+	while (*format != '\0')
 		{
+			if (*format == '%')
+			{
+				format++;
+            	if (*format == '%')
+					ft_putchar('%');
+           		 else if (*format == 'd' || *format == 'i')
+            		ft_putnbr(va_arg(ap, int));
+            	else if (*format == 'c' || *format == 'C')
+                	ft_putchar(va_arg(ap, int));
+            	else if (*format == 's' || *format == 'S')
+               		ft_putstr(va_arg(ap, char *));
+				else if (*format == 'x')
+					ft_hexa_upper(va_arg(ap, int), 1); 
+				else if (*format == 'X')
+					ft_hexa_upper(va_arg(ap, int), 0);
+				else if (*format == 'o')
+					ft_int_to_octal(va_arg(ap, int));
+			}
+			else
+        	{
+            	ft_putchar(*format);
+            	size++;
+        	}
+			format++;
+		}
+	va_end(ap);
+	return (size);
+}
+
+int main(void)
+{
+	ft_printf("%c", 'X');
+	ft_printf("\n");
+	ft_printf( "%s", "coucou toi ca va ? \n");
+	ft_printf( "%d\n", 12345);   
+	ft_printf( "%x\n", 123465498);
+	ft_printf( "%X\n", 123465498);
+	ft_printf("%o", 68);
+	return (0);
+}
+
+
+
+
+
+		/*	/////////////////MINIMUM WIDTH////////////////////
 			int width_min;
 			int len;
 			
@@ -70,74 +107,24 @@ void	ft_printf(const char *format, ...)
 					printf("%s\n", n);
 					break;
 				}
-		}		
-	}
-	va_end(ap);
-}
+				*/
+			//////////////CONVERSION PROCEDURE/////////////////
 
-int main(void)
+
+int		ft_int_to_octal(long nbr)
 {
-	ft_printf("4", "coucou");
-	return (0);
+    int octal[100];
+	int j;
+	int i;
+
+	i = 0;
+    while (nbr != 0)
+    {
+        octal[i++] = nbr % 8;
+        nbr = nbr / 8;
+    }
+	j = i;
+	while (j-- > 0)
+		ft_putnbr(octal[j]);
+    return (0);
 }
-
-/*void	format(const char *format, ...)
-{
-	va_list ap;
-	va_list ap2;
-	char c;
-	char *s;
-	int d;
-
-	va_start(ap2, format);
-	va_copy(ap2, ap);
-	while (*format)
-	{
-		// TEST 1
-
-		// TEST 2		
-		if(format == "%s")
-		{
-			s = va_arg(ap, char *);
-			ft_putstr();
-			printf("string %s\n", s);
-			break;
-		}
-		if( format == '%d')
-		{
-			d = va_arg(ap, int);
-			ft_putnbr();
-			printf("int %d\n", d);
-			break;
-		}
-		if(format == '%c')
-		{
-			c = va_arg(ap, char);
-			ft_putchar();
-			printf("char %c\n", c);
-			break;
-		}
-	}
-	va_end(ap2);
-}
-*/
-
-/* int	ft_width_master(int width_min, int len)
-{
-	width_min = ft_atoi(format);
-	len = ft_strlen(n);
-	if (width_min > len)
-	{
-		int i;
-		int tmp;
-
-		i = 0;
-		tmp = width_min - len;
-		while (++i != tmp)
-			ft_putchar(' ');
-			return (-1);
-	}
-	else
-		return (1);
-}
-*/

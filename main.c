@@ -6,7 +6,7 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 01:52:10 by cparis            #+#    #+#             */
-/*   Updated: 2017/02/03 14:35:35 by cparis           ###   ########.fr       */
+/*   Updated: 2017/02/09 03:57:40 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int number = 17;
 char *str = "Petite string sympathique.";
 int *ptr = &number;
 int c;
-unsigned int hexa = 11259375;
+unsigned int hexa = 259375111;
 int max= 32767;
 int min = -32767;
 int max_false = 655465;
@@ -69,9 +69,11 @@ int octal = 123;
 //%x 	hexadecimal integer - ASCII
 	printf(COLOR_GREEN "HEXADECIMAL INTEGER\n" COLOR_RESET);
 	printf(COLOR_CYAN "   - LOWER (x)\n" COLOR_RESET);
-	printf("%x\n", hexa); //lower
+	printf("%x\n", hexa);
+	printf("%x\n", 'a'); //lower
 	printf(COLOR_CYAN "   - UPPER (X)\n" COLOR_RESET);
-	printf("%X\n\n", hexa); //upper
+	printf("%X\n\n", hexa);
+	printf("%X\n", 'A'); //upper
 
 //%c 	character (int to letter)
 	printf(COLOR_RED "INT to LETTER ASCII (c)\n" COLOR_RESET);

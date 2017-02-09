@@ -6,10 +6,9 @@
 #    By: cparis <cparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/30 15:55:48 by cparis            #+#    #+#              #
-#    Updated: 2017/02/03 17:20:24 by cparis           ###   ########.fr        #
+#    Updated: 2017/02/09 03:50:04 by cparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 
 NAME = ft_printf
 
@@ -32,7 +31,7 @@ SRCS = $(addprefix $(SRC_PATH)/, $(SRC_LIBFT))
 
 OBJ_LIBFT = $(SRC_LIBFT:.c=.o)
 
-SRCS_PRINTF = ft_printf.c
+SRCS_PRINTF = ft_printf.c ft_hexaprint.c #(./srcs/*.c) 
 
 OPTIONS = -c -I $(INCLUDES)
 
@@ -41,16 +40,40 @@ FLAGS = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME):
+	@echo " ----------------------------------------------------------------"
+	@echo "| MAKEFILE 1.0 USED FOR $(NAME) // PLEASE WAIT A MOMENT PLEASE |"
+	@echo "|----------------------------------------------------------------|"
+	@sleep 1.0;
+	@echo "| \033[31m Making the project $(NAME) ==> 25% ...\033[m                      |"
 	@gcc $(FLAGS) $(OPTIONS) $(SRCS)
 	@ar rc libft.a $(OBJ_LIBFT)
+	@echo "| \033[31m Making the project $(NAME) ==> 50% ...\033[m                      |"
+	@sleep 1.0;
+	@echo "| \033[31m Making the project $(NAME) ==> 75% ...\033[m                      |"
 	@gcc $(FLAGS) -o $(NAME) libft.a $(SRCS_PRINTF)
-	@echo 'Compilation de FillIt en cours ...'
-	@echo 'Compilation TERMINE !'
-
+	@sleep 1.0;
+	@echo "| \033[31m Making the project $(NAME) ==> 100% ...\033[m                     |"
+	@sleep 1.0;
+	@echo "|----------------------------------------------------------------|"
+	@echo "| \033[33m         	      COMPILATION FINISHED   \033[m                    |"
+	@echo " ----------------------------------------------------------------"
+	@echo "\033[34m                         Better Makefile 1.0 by cparis - 42 School \033[m"
+	@mkdir OBJDIR
+	@mv *.o OBJDIR
 clean:
 	@/bin/rm -f ./$(OBJ_LIBFT)
-	@echo 'Suppression des fichiers .o en cours ..'
-	@echo 'Suppression TERMINE !'
+	@echo " ----------------------------------------------------------------"
+	@echo "| MAKEFILE 1.0 USED FOR $(NAME) // PLEASE WAIT A MOMENT PLEASE |"
+	@echo "|----------------------------------------------------------------|"
+	@echo "| \033[31m Cleaning project $(NAME) ==> 50% ...\033[m                        |"
+	@sleep 1.0;
+	@echo "| \033[31m Cleaning project $(NAME) ==> 100% ...\033[m                       |"
+	@sleep 1.0;
+	@echo "|----------------------------------------------------------------|"
+	@echo "| \033[36m           	        CLEAN FINISHED   \033[m                        |"
+	@echo " ----------------------------------------------------------------"
+	@echo "\033[34m                         Better Makefile 1.0 by cparis - 42 School \033[m"
+	@rm -rf OBJDIR
 
 fclean: clean
 	@/bin/rm -f $(NAME)
