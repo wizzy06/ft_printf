@@ -92,3 +92,6 @@ void    format(const char *format, ...)
 	}
 	va_end(ap);
 }
+
+
+

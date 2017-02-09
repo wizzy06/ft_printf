@@ -6,7 +6,7 @@
 #    By: cparis <cparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/30 15:55:48 by cparis            #+#    #+#              #
-#    Updated: 2017/02/09 03:50:04 by cparis           ###   ########.fr        #
+#    Updated: 2017/02/09 04:46:30 by cparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRCS = $(addprefix $(SRC_PATH)/, $(SRC_LIBFT))
 
 OBJ_LIBFT = $(SRC_LIBFT:.c=.o)
 
-SRCS_PRINTF = ft_printf.c ft_hexaprint.c #(./srcs/*.c) 
+SRCS_PRINTF = ft_printf.c ft_hexaprint.c ft_int_to_octal.c #(./srcs/*.c) 
 
 OPTIONS = -c -I $(INCLUDES)
 
@@ -46,20 +46,21 @@ $(NAME):
 	@sleep 1.0;
 	@echo "| \033[31m Making the project $(NAME) ==> 25% ...\033[m                      |"
 	@gcc $(FLAGS) $(OPTIONS) $(SRCS)
-	@ar rc libft.a $(OBJ_LIBFT)
+	@ar rc libftprintf.a $(OBJ_LIBFT)
 	@echo "| \033[31m Making the project $(NAME) ==> 50% ...\033[m                      |"
 	@sleep 1.0;
 	@echo "| \033[31m Making the project $(NAME) ==> 75% ...\033[m                      |"
-	@gcc $(FLAGS) -o $(NAME) libft.a $(SRCS_PRINTF)
+	@gcc $(FLAGS) -o $(NAME) libftprintf.a $(SRCS_PRINTF)
 	@sleep 1.0;
 	@echo "| \033[31m Making the project $(NAME) ==> 100% ...\033[m                     |"
+	@mkdir OBJ_DIR
+	@mv *.o OBJ_DIR
 	@sleep 1.0;
 	@echo "|----------------------------------------------------------------|"
 	@echo "| \033[33m         	      COMPILATION FINISHED   \033[m                    |"
 	@echo " ----------------------------------------------------------------"
 	@echo "\033[34m                         Better Makefile 1.0 by cparis - 42 School \033[m"
-	@mkdir OBJDIR
-	@mv *.o OBJDIR
+
 clean:
 	@/bin/rm -f ./$(OBJ_LIBFT)
 	@echo " ----------------------------------------------------------------"
@@ -68,15 +69,15 @@ clean:
 	@echo "| \033[31m Cleaning project $(NAME) ==> 50% ...\033[m                        |"
 	@sleep 1.0;
 	@echo "| \033[31m Cleaning project $(NAME) ==> 100% ...\033[m                       |"
+	@rm -rf OBJ_DIR
 	@sleep 1.0;
 	@echo "|----------------------------------------------------------------|"
 	@echo "| \033[36m           	        CLEAN FINISHED   \033[m                        |"
 	@echo " ----------------------------------------------------------------"
 	@echo "\033[34m                         Better Makefile 1.0 by cparis - 42 School \033[m"
-	@rm -rf OBJDIR
 
 fclean: clean
 	@/bin/rm -f $(NAME)
-	@/bin/rm -f libft.a
+	@/bin/rm -f libftprintf.a
 
 re: fclean all

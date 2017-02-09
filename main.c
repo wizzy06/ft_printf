@@ -6,7 +6,7 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/29 01:52:10 by cparis            #+#    #+#             */
-/*   Updated: 2017/02/09 03:57:40 by cparis           ###   ########.fr       */
+/*   Updated: 2017/02/09 04:18:20 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int octal = 123;
 	printf("%d\n", min);
 	printf("%i\n", max);
 	printf("%d\n\n", max_false);
+	printf("Il est temps de tester le %d et le %s", octal, str);
 
 //%o 	octal integer
 	printf(COLOR_GREEN "OCTAL INTEGER (o)\n" COLOR_RESET);
