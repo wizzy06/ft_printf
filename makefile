@@ -6,7 +6,7 @@
 #    By: cparis <cparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/30 15:55:48 by cparis            #+#    #+#              #
-#    Updated: 2017/02/11 14:29:53 by cparis           ###   ########.fr        #
+#    Updated: 2017/02/12 17:23:01 by cparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ $(NAME):
 	@echo "|----------------------------------------------------------------|"
 	@echo "| \033[33m         	      COMPILATION FINISHED   \033[m                    |"
 	@echo " ----------------------------------------------------------------"
-	@echo "\033[34m                         Better Makefile 1.0 by cparis - 42 School \033[m"
+	@echo "\033[34m                         Better Makefile 1.0 by cparis - 42 School \033[m\n"
 
 clean:
 	@/bin/rm -f ./$(OBJ_LIBFT)
@@ -74,7 +74,7 @@ clean:
 	@echo "|----------------------------------------------------------------|"
 	@echo "| \033[36m           	        CLEAN FINISHED   \033[m                        |"
 	@echo " ----------------------------------------------------------------"
-	@echo "\033[34m                         Better Makefile 1.0 by cparis - 42 School \033[m"
+	@echo "\033[34m                         Better Makefile 1.0 by cparis - 42 School \033[m\n"
 
 fclean: clean
 	@/bin/rm -f $(NAME)

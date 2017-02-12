@@ -6,7 +6,7 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 23:52:27 by cparis            #+#    #+#             */
-/*   Updated: 2017/02/11 16:26:13 by cparis           ###   ########.fr       */
+/*   Updated: 2017/02/12 17:48:05 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int		ft_printf(const char *format, ...)
 			if (*format == '%')
 			{
 				format++;
+				ft_minimum_width(ap, format);
 				ft_conversion_master(ap, *format);
 			}
 			else
@@ -71,5 +72,27 @@ int main(void)
 	ft_printf( "%X\n", 123465498);
 	ft_printf("%o\n", 68);
 	ft_printf("%p\n", p);
+	ft_printf( "%25X\n", 1238);
 	return (0);
-}       
+}
+
+void	ft_minimum_width(va_list ap, const char *format)
+{
+	char *str;
+	int i;
+	
+	i = -1;
+	str = (char *) format;
+	while (str[i++] != '\0' && ft_isdigit(str[i]))
+	{
+		int tmp;
+		int len;
+		len = ft_strlen(ap);
+		tmp = ft_atoi(&str[i++]);
+		printf("There is/are %d.\n", tmp);
+		if (len >= tmp)
+		{
+			printf("marche fdp");
+		}
+	}
+}
