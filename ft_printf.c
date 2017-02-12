@@ -6,7 +6,7 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 23:52:27 by cparis            #+#    #+#             */
-/*   Updated: 2017/02/12 17:48:05 by cparis           ###   ########.fr       */
+/*   Updated: 2017/02/12 18:00:27 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int main(void)
 	return (0);
 }
 
-void	ft_minimum_width(va_list ap, const char *format)
+/*void	ft_minimum_width(va_list ap, const char *format)
 {
 	char *str;
 	int i;
@@ -96,3 +96,4 @@ void	ft_minimum_width(va_list ap, const char *format)
 		}
 	}
 }
+*/
