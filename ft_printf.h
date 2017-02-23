@@ -6,7 +6,7 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 23:48:48 by cparis            #+#    #+#             */
-/*   Updated: 2017/02/23 18:14:01 by cparis           ###   ########.fr       */
+/*   Updated: 2017/02/23 19:45:52 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct			s_conversion
 
 static t_flags  *reset_flag(void);
 t_conversion    *reset_conv(void);
-// char            *free_join(char *s1, char *s2);
+char          *free_join(char *s1, char *s2);
 char            *ft_init_param(t_conversion *conv, const char *format);
 
 int		        ft_printf(const char *format, ...);

@@ -6,11 +6,11 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 18:02:19 by cparis            #+#    #+#             */
-/*   Updated: 2017/02/23 18:24:28 by cparis           ###   ########.fr       */
+/*   Updated: 2017/02/23 19:45:49 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_print.h"
+#include "ft_printf.h"
 
 static char    *set_flag(t_conversion *conv, const char *format)
 {
@@ -78,11 +78,12 @@ static char    *ft_modif_letters(t_conversion *conv, const char *format)
     return (format);
 }
 
-/* char    *ft_pos_or_neg(t_conversion *conv, const char *format)
+char    *ft_pos_or_neg(t_conversion *conv, const char *format)
 {
+    format = ft_print_integer(*conv, *format, &choice);
+    
 
-} 
-*/
+}
 
 static char    *ft_conversion_type(t_conversion *conv, const char *format)
 {
@@ -106,7 +107,7 @@ static char    *ft_conversion_type(t_conversion *conv, const char *format)
             conv->type = 'u';
         else
             conv->type = 'p';
-        format++;   
+        format++;
     }
     return (format);
 }
@@ -119,7 +120,7 @@ char    *ft_init_param(t_conversion *conv, const char *format)
         format = ft_minimum_width(*conv, *format);
         format = ft_precision(*conv, *format);
         format = ft_modif_letters(*conv, *format);
-        format = ft_conversion_type(*conv, *format);
+        format = ft_choose_camp(*conv, *format);
     }
     return (format);
 }
