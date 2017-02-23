@@ -1,5 +1,8 @@
 hh
-La conversion entière suivante correspond à un signed char ou unsigned char, ou la conversion n suivante correspond à un argument pointeur sur un signed char.
+La conversion entière suivante correspond à un signed char ou unsigned char, 
+ou la conversion n suivante correspond à un argument pointeur sur un signed char.
+
+
 h
 La conversion entière suivante correspond à un short int ou unsigned short int, ou la conversion n suivante correspond à un argument pointeur sur un short int.
 l
