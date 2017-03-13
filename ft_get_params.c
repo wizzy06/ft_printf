@@ -6,7 +6,7 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 18:02:19 by cparis            #+#    #+#             */
-/*   Updated: 2017/02/23 19:45:49 by cparis           ###   ########.fr       */
+/*   Updated: 2017/03/06 15:22:46 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char    *set_flag(t_conversion *conv, const char *format)
             conv->flag->plus = 1;
         else if (format == "-")
             conv->flag->minus = 1;
-        else if (format == "#")
+        else if (format == "#")====
             conv->flag->sharp = 1;
         else if (format == "0")
             conv->flag->zero = 1;
@@ -120,7 +120,7 @@ char    *ft_init_param(t_conversion *conv, const char *format)
         format = ft_minimum_width(*conv, *format);
         format = ft_precision(*conv, *format);
         format = ft_modif_letters(*conv, *format);
-        format = ft_choose_camp(*conv, *format);
+        format = ft_choose_camp(*conv, *format, choice);
     }
     return (format);
 }
