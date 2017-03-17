@@ -6,32 +6,34 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 18:02:19 by cparis            #+#    #+#             */
-/*   Updated: 2017/03/06 15:22:46 by cparis           ###   ########.fr       */
+/*   Updated: 2017/03/17 19:06:25 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char    *set_flag(t_conversion *conv, const char *format)
+static const char    *set_flag(t_conversion *conv, const char *format)
 {
     while (ft_strchr(" +#0-", *format))
     {
-        if (format == "+")
+        if (*format == '+')
             conv->flag->plus = 1;
-        else if (format == "-")
+        else if (*format == '-')
             conv->flag->minus = 1;
-        else if (format == "#")====
+        else if (*format == '#')
             conv->flag->sharp = 1;
-        else if (format == "0")
+        else if (*format == '0')
             conv->flag->zero = 1;
-        else
+        else if (*format == ' ')
             conv->flag->space = 1;
+        else if (*format == '\0')
+            break;
         format++;
     }
     return (format);
 }
 
-static char    *ft_minimum_width(t_conversion *conv, const char *format)
+static const char    *ft_minimum_width(t_conversion *conv, const char *format)
 {
     conv->min_width = ft_atoi(format);
     while (ft_isdigit(format))
@@ -39,7 +41,7 @@ static char    *ft_minimum_width(t_conversion *conv, const char *format)
     return (format);
 }
 
-static char    *ft_precision(t_conversion *conv, const char *format)
+static const char    *ft_precision(t_conversion *conv, const char *format)
 {
     if (ft_strchr(".", *format))
     {
@@ -51,7 +53,7 @@ static char    *ft_precision(t_conversion *conv, const char *format)
     return (format);
 }
 
-static char    *ft_modif_letters(t_conversion *conv, const char *format)
+static const char    *ft_modif_letters(t_conversion *conv, const char *format)
 {
     if (ft_strchr("hljz", *format))
     {
@@ -72,38 +74,31 @@ static char    *ft_modif_letters(t_conversion *conv, const char *format)
         else if (ft_strncmp("j", format, 1) == 0)
             conv->modif = J;
         else
-            conv->modif == Z;
+            conv->modif = Z;
         format++;
     }
     return (format);
 }
 
-char    *ft_pos_or_neg(t_conversion *conv, const char *format)
+static const char    *ft_conversion_type(t_conversion *conv, const char *format)
 {
-    format = ft_print_integer(*conv, *format, &choice);
-    
-
-}
-
-static char    *ft_conversion_type(t_conversion *conv, const char *format)
-{
-    if (format == ft_strchr("%dcsxXoup", *format))
+    if (*format == ft_strchr("%dcsxXoup", *format))
     {
-        if (format == '%')
+        if (*format == '%')
             conv->type = '%';
-        else if (format == 'd')
+        else if (*format == 'd')
             conv->type = 'd';
-        else if (format == 'c')
+        else if (*format == 'c')
             conv->type = 'c';
-        else if (format == 's')
+        else if (*format == 's')
             conv->type = 's';
-        else if (format == 'x')
+        else if (*format == 'x')
             conv->type = 'x';
-        else if (format == 'X')
+        else if (*format == 'X')
             conv->type = 'X';
-        else if (format == 'o')
+        else if (*format == 'o')
             conv->type = 'o';
-        else if (format == 'u')
+        else if (*format == 'u')
             conv->type = 'u';
         else
             conv->type = 'p';
@@ -112,15 +107,31 @@ static char    *ft_conversion_type(t_conversion *conv, const char *format)
     return (format);
 }
 
-char    *ft_init_param(t_conversion *conv, const char *format)
+const char    *ft_init_param(const char *format, va_list ap)
 {
-    if (*format)
+    t_conversion    *conv;
+    unsigned long   stop;
+
+    conv = reset_conv(void);
+    while (*format && !conv->type)
     {
+        stop = ft_strlen(format);
         format = set_flag(*conv, *format);
         format = ft_minimum_width(*conv, *format);
         format = ft_precision(*conv, *format);
         format = ft_modif_letters(*conv, *format);
-        format = ft_choose_camp(*conv, *format, choice);
+        if (*format && ft_strchr("dDioOuUxXpcCsS%", *format))
+        {
+            conv->type = *format;
+            format++;
+        }
+        if (stop == ft_strlen(format))
+            break;
     }
+    ft_choose_camp(conv, ap);
+    if (conv->flag)
+        free(conv->flag);
+        if (conv)
+            free(conv);
     return (format);
 }

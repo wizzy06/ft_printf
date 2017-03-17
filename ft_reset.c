@@ -6,7 +6,7 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/23 15:50:48 by cparis            #+#    #+#             */
-/*   Updated: 2017/02/23 18:59:24 by cparis           ###   ########.fr       */
+/*   Updated: 2017/03/17 18:52:46 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_conversion	*reset_conv(void)
 	t_conversion	*new_conv;
 
 	new_conv = malloc(sizeof(t_conversion));
-	ft_bzero(newconv, sizeof(t_conversion));
+	ft_bzero(new_conv, sizeof(t_conversion));
 	new_conv->flag = reset_flag();
 	new_conv->modif = NONE;
 	return (new_conv);

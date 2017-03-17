@@ -6,36 +6,68 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 23:52:27 by cparis            #+#    #+#             */
-/*   Updated: 2017/02/23 18:07:01 by cparis           ###   ########.fr       */
+/*   Updated: 2017/03/17 19:03:44 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdlib.h>
 
-int		ft_printf(const char *format, ...)
+int				ft_count_octet(int option, int add)
+{
+	static int	octet = 0;
+
+	if (add = -1)
+		octet = -1;
+	if (octet != -1)
+	{
+		if (option == 1)
+			octet = octet + add;
+		if (option == 0)
+		{
+			add = octet;
+			octet = 0;
+			return (add);
+		}
+	}
+	return (octet);
+}
+
+int				ft_printf(const char *format, ...)
 {
 	va_list ap;
-	int size;
-	t_conversion *conv;
+	int 	ret;
 	
-	conv = reset_conv();
+	if (!format)
+		return (0);
 	va_start(ap, format);
-	while (*format != '\0')
+	ret = ft_start_print(format, ap);
+	va_end(ap);
+	return (ret);
+}
+
+int		ft_start_print(const char *format, va_list ap)
+{
+	int i;
+
+	while (*format)
+	{
+		if (*format != '%')
 		{
-			if (*format == '%')
-			{
-				format++;
-				ft_get_params(*conv, *format);
-			}
-			else
-        	{
-            	ft_putchar(*format);
-        	}
-			
+			i = write(1, format, 1);
+			ft_count_octet(1, i);
 			format++;
 		}
-	va_end(ap);
+		else
+		{
+			format++;
+			if (*format != '\0')
+				break;
+			else
+				format = ft_init_params(format, ap);
+		}
+	}
+	return (ft_count_octet(0, 0));
 }
 
 int main(void)

@@ -6,7 +6,7 @@
 #    By: cparis <cparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/30 15:55:48 by cparis            #+#    #+#              #
-#    Updated: 2017/02/12 17:23:01 by cparis           ###   ########.fr        #
+#    Updated: 2017/03/17 18:46:05 by cparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,9 @@ SRCS = $(addprefix $(SRC_PATH)/, $(SRC_LIBFT))
 
 OBJ_LIBFT = $(SRC_LIBFT:.c=.o)
 
-SRCS_PRINTF = ft_printf.c ft_hexaprint.c ft_int_to_octal.c ft_conversion_master.c ft_pointer_adress.c #(./srcs/*.c) 
+SRCS_PRINTF = ft_conversion_master.c ft_get_number.c ft_get_params.c ft_itoa_base.c \
+			ft_print_char.c ft_print_number.c ft_print_wchar.c ft_print_with_space.c \
+			ft_printf.c ft_reset.c ft_wintoa.c
 
 OPTIONS = -c -I $(INCLUDES)
 
