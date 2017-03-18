@@ -6,24 +6,24 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/02 15:08:53 by cparis            #+#    #+#             */
-/*   Updated: 2017/03/17 19:15:48 by cparis           ###   ########.fr       */
+/*   Updated: 2017/03/18 15:07:28 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char		ft_choose_camp(t_conversion *conv, va_list ap)
+void		ft_print_type(t_conversion *conv, va_list ap)
 {
 	if (!conv->type)
 		conv->type = 'a';
 	ft_check_type(conv);
 	if (ft_strchr("douxXp", conv->type))
-		ft_print_num(conv, ap);
-	else if (ft_strchr("cs%", conv->type))
+		ft_print_is_number(conv, ap);
+	if (ft_strchr("cs%", conv->type))
 		ft_print_is_char(conv,ap);	
 }
 
-char		ft_print_is_char(t_conversion *conv, va_list ap)
+void		ft_print_is_char(t_conversion *conv, va_list ap)
 {
 	if (conv->modif == L)
 	{
@@ -43,7 +43,7 @@ char		ft_print_is_char(t_conversion *conv, va_list ap)
 		ft_print_char(conv, '%');
 }
 
-char	ft_print_is_number(t_conversion *conv, va_list ap)
+void	  ft_print_is_number(t_conversion *conv, va_list ap)
 {
 	intmax_t nbr;
 
@@ -63,7 +63,7 @@ char	ft_print_is_number(t_conversion *conv, va_list ap)
 		ft_print_du(conv, (uintmax_t)nbr);
 	else if (conv->type == 'o')
 		ft_print_o(conv, (uintmax_t)nbr);
-	else if (ft_strchr("xp", conv->type));
+	else if (ft_strchr("xp", conv->type))
 		ft_print_xp(conv, (uintmax_t)nbr);
 	else if (conv->type == 'X')
 		ft_print_x_caps(conv, (uintmax_t)nbr);

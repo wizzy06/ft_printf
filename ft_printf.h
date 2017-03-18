@@ -6,7 +6,7 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 23:48:48 by cparis            #+#    #+#             */
-/*   Updated: 2017/03/17 19:15:57 by cparis           ###   ########.fr       */
+/*   Updated: 2017/03/18 15:07:56 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <limits.h>
 # include <wchar.h>
 # include "libft/libft.h"
+# include <stdint.h>
 
 typedef struct			s_flags
 {
@@ -45,12 +46,12 @@ typedef struct			s_conversion
 	char				sign;
 }						t_conversion;
 
-char		ft_print_is_char(t_conversion *conv, va_list ap);
-char		ft_print_is_number(t_conversion *conv, va_list ap);
+void		ft_print_is_char(t_conversion *conv, va_list ap);
+void		ft_print_is_number(t_conversion *conv, va_list ap);
 intmax_t    ft_get_number_signed(t_conversion *conv, va_list ap);
 uintmax_t  	ft_get_number_unsigned(t_conversion *conv, va_list ap);
 const char    	*ft_pos_or_neg(t_conversion *conv, const char *format);
-char    	*ft_init_param(const char *format, va_list ap);
+const char    	*ft_init_param(const char *format, va_list ap);
 char			*ft_itoa_base(uintmax_t value, uintmax_t base);
 void			ft_print_char(t_conversion *conv, char c);
 void			ft_print_str(t_conversion *conv, char *str);
@@ -72,6 +73,8 @@ int		ft_start_print(const char *format, va_list ap);
 char	*ft_strupcase(char *str);
 char	*ft_strlowcase(char *str);
 void		ft_check_type(t_conversion *conv);
+char		ft_choose_camp(t_conversion *conv, va_list ap);
+void	ft_print_type(t_conversion *conv, va_list ap);
 
 #endif
 

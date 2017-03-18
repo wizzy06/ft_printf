@@ -6,7 +6,7 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 18:02:18 by cparis            #+#    #+#             */
-/*   Updated: 2017/03/17 19:18:14 by cparis           ###   ########.fr       */
+/*   Updated: 2017/03/18 15:08:49 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void		ft_print_xp(t_conversion *conv, uintmax_t nbr)
 		str = free_join("0", str);
 		len++;
 	}
-	if ((conv->flag->sharp && num > 0) || conv->type == 'p')
+	if ((conv->flag->sharp && nbr > 0) || conv->type == 'p')
 		str = free_join("0x", str);
 	ft_print_number_with_space(conv, str);
 	free(str);

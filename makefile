@@ -6,13 +6,13 @@
 #    By: cparis <cparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/30 15:55:48 by cparis            #+#    #+#              #
-#    Updated: 2017/03/17 18:46:05 by cparis           ###   ########.fr        #
+#    Updated: 2017/03/18 13:53:58 by cparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_printf
 
-INCLUDES = ./libft/libft.h
+INCLUDES = /libft/libft.h
 
 SRC_PATH = ./libft/
 
