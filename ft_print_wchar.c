@@ -6,7 +6,7 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/17 18:29:26 by cparis            #+#    #+#             */
-/*   Updated: 2017/03/17 18:33:39 by cparis           ###   ########.fr       */
+/*   Updated: 2017/03/18 16:49:55 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void		ft_print_wchars(t_conversion *conv, wchar_t *wstr, int size)
 	if (!(conv->flag->minus) && conv->flag->zero)
 		ft_print_space(total, conv->min_width, '0');
 	else if (!(conv->flag->minus))
-		print_space(total, conv->min_width, ' ');
+		ft_print_space(total, conv->min_width, ' ');
 	i = 0;
 	while (i < size)
 	{
@@ -64,7 +64,7 @@ void			ft_print_wchar(t_conversion *conv, wint_t wint)
 {
 	wchar_t wchar;
 
-	if (wint < 0)
+	if (wint <= 1)
 		ft_count_octet(0, -1);
 	wchar = (wchar_t)wint;
 	ft_print_wchars(conv, &wchar, 1);

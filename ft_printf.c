@@ -6,7 +6,7 @@
 /*   By: cparis <cparis@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/28 23:52:27 by cparis            #+#    #+#             */
-/*   Updated: 2017/03/17 19:03:44 by cparis           ###   ########.fr       */
+/*   Updated: 2017/03/18 16:44:57 by cparis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int				ft_count_octet(int option, int add)
 {
 	static int	octet = 0;
 
-	if (add = -1)
+	if (add == -1)
 		octet = -1;
 	if (octet != -1)
 	{
@@ -64,7 +64,7 @@ int		ft_start_print(const char *format, va_list ap)
 			if (*format != '\0')
 				break;
 			else
-				format = ft_init_params(format, ap);
+				format = ft_init_param(format, ap);
 		}
 	}
 	return (ft_count_octet(0, 0));
