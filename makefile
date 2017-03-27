@@ -6,17 +6,19 @@
 #    By: cparis <cparis@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/30 15:55:48 by cparis            #+#    #+#              #
-#    Updated: 2017/03/24 19:37:43 by cparis           ###   ########.fr        #
+#    Updated: 2017/03/27 20:42:41 by cparis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME 		= libftprintf.a
 
-INCLUDES = ./libft/libft.h
+CFLAGS      = -Wall -Wextra -Werror
 
-SRC_PATH = ./libft/
+LIB_PATH	= ./includes
 
-SRC_LIBFT = ft_strcpy.c ft_strncpy.c ft_strcat.c ft_strncat.c ft_strchr.c \
+LIB = $(addprefix $(LIB_PATH)/, $(LIB_SRC))
+
+LIB_SRC 	= ft_strcpy.c ft_strncpy.c ft_strcat.c ft_strncat.c ft_strchr.c \
 			ft_strrchr.c ft_strlen.c ft_strdup.c ft_atoi.c ft_strcmp.c ft_strncmp.c \
 			ft_strnew.c ft_strdel.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c \
 			ft_memmove.c ft_memalloc.c ft_memdel.c ft_strclr.c ft_memchr.c ft_memcmp.c \
@@ -28,51 +30,28 @@ SRC_LIBFT = ft_strcpy.c ft_strncpy.c ft_strcat.c ft_strncat.c ft_strchr.c \
 			ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c \
 			ft_strupcase.c ft_strlowcase.c
 
-SRCS = $(addprefix $(SRC_PATH)/, $(SRC_LIBFT))
-
-OBJ_LIBFT = $(SRC_LIBFT:.c=.o)
-
-SRCS_PRINTF = ft_printf.c ft_reset.c ft_wintoa.c ft_get_num.c ft_prep_print.c ft_print.c \
+PRINTF_DIR 	= ./srcs/
+PRINTF_NAME	= ft_printf.c ft_reset.c ft_wintoa.c ft_get_num.c ft_prep_print.c ft_print.c \
 	ft_print_num.c ft_print_space.c ft_print_str.c ft_print_wstr.c ft_itoa_base.c
 
-OPTIONS = -c $(INCLUDES)
+PRINTF_SRC  = $(addprefix $(PRINTF_DIR)/, $(PRINTF_NAME))
 
-FLAGS = -Wall -Werror -Wextra
+LIB_OBJ 	= $(LIB_SRC:.c=.o)
+PRINTF_OBJ 	= $(PRINTF_NAME:.c=.o)
+OBJ         = $(addprefix $(LIB_OBJ)/, $(PRINTF_OBJ))
 
 all: $(NAME)
 
 $(NAME):
-	@echo " ----------------------------------------------------------------"
-	@echo "| MAKEFILE 1.0 USED FOR FT_PRINTF // PLEASE WAIT A MOMENT PLEASE |"
-	@echo "|----------------------------------------------------------------|"
-	@echo "| \033[31m Making the project ft_printf ==> 25% ...\033[m                      |"
-	@gcc $(FLAGS) $(OPTIONS) $(SRCS) $(SRCS_PRINTF)
-	@ar rc $(NAME) $(OBJ_LIBFT)
-	@ranlib $(NAME)
-	@mkdir OBJ_DIR
-	@mv *.o OBJ_DIR
-	@echo "| \033[31m Making the project ft_printf ==> 50% ...\033[m                      |"
-	@echo "| \033[31m Making the project ft_printf ==> 75% ...\033[m                      |"
-	@echo "| \033[31m Making the project ft_printf ==> 100% ...\033[m                     |"
-	@echo "|----------------------------------------------------------------|"
-	@echo "| \033[33m         	      COMPILATION FINISHED   \033[m                    |"
-	@echo " ----------------------------------------------------------------"
-	@echo "\033[34m                         Better Makefile 1.0 by cparis - 42 School \033[m\n"
+	gcc $(CFLAGS) -c $(LIB) $(PRINTF_SRC)
+	ar rc $(NAME) $(LIB_OBJ) $(PRINTF_OBJ)
+	ranlib $(NAME)
 
 clean:
-	@/bin/rm -f ./$(OBJ_LIBFT)
-	@echo " ----------------------------------------------------------------"
-	@echo "| MAKEFILE 1.0 USED FOR FT_PRINTF // PLEASE WAIT A MOMENT PLEASE |"
-	@echo "|----------------------------------------------------------------|"
-	@echo "| \033[31m Cleaning project ft_printf ==> 50% ...\033[m                        |"
-	@echo "| \033[31m Cleaning project ft_printf ==> 100% ...\033[m                       |"
-	@rm -rf OBJ_DIR
-	@echo "|----------------------------------------------------------------|"
-	@echo "| \033[36m           	        CLEAN FINISHED   \033[m                        |"
-	@echo " ----------------------------------------------------------------"
-	@echo "\033[34m                         Better Makefile 1.0 by cparis - 42 School \033[m\n"
+	rm -f $(LIB_OBJ)
+	rm -f $(PRINTF_OBJ)
 
 fclean: clean
-	@/bin/rm -f $(NAME)
+	rm -f $(NAME)
 
 re: fclean all
